@@ -1,0 +1,11 @@
+<% layout("./layouts/boilerplate")%>
+
+<h1> All Rideshares</h1>
+<div>
+    <a href="/rideShares/new">Create a new Rideshare</a>
+</div>
+<ul>
+    <% for (let rideShare of rideShares) {%>
+        <li><a href="rideShares/<%= rideShare.id %>"><%= rideShare.companyName %></a></li>
+        <% } %>
+</ul>

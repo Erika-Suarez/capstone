@@ -1,0 +1,44 @@
+<% layout("./layouts/boilerplate")%>
+
+<h1>Edit <%=rideShare.companyName%></h1>
+<div class="col-6 offset-3">
+        
+    <form class="needs-validation" action="/rideShares" method="POST" novalidate>
+        <div class="nb-3">
+            <label class="form-label" for="name">Rideshare Company Name</label>
+            <input class="form-control"type="text" id="name" name="rideShare[name]" value="<%= rideShare.companyName %>" required>
+        </div>
+    
+       
+        <div class="nb-3">
+            <label class="form-label" for="description">Description</label>
+            <input class="form-control" type="description" id="description" name="rideShare[description]" value="<%= rideShare.description %>" required>
+        </div>
+                <div class="nb-3">
+                    <label class="form-label" for="price">Price Range</label>
+                    <select name= "rideshare[price]" id="price">
+                        <option value="low">$</option>
+                        <option value="medium">$$</option>
+                        <option value="high">$$$</option>
+                        </select>
+                    </div>
+                        <div class="nb-3">
+                            <label class="form-label" for="accessibility">Accessibility</label>
+                            <select name= "rideshare[accessibility]" id="accessibility"></select>    
+                                <option value="ramp">Ramp</option>
+                                <option value="wheeChair">Wheel Chair</option>
+                                <option value="hearingImpaired">Driver Speaks (ASL)</option>
+                            </select>
+                            </div>
+            </section>
+       
+    
+        <div class="nb-3">
+            <label class="form-label" for="image">RideShare Image</label>
+            <input class="form-control" type="text" id="image" name="rideShare[image]"" value=" <%= rideShare.image %>" required>
+        </div>
+    
+        <button> Submit </button>
+    
+    </form>
+<a href="/rideShares/<%=rideShare.id%>">Go back to <%=rideShare.companyName%></a>

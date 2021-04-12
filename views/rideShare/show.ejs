@@ -1,0 +1,65 @@
+<% layout("./layouts/boilerplate")%>
+
+<a href="/rideShares">Go to all Rideshares</a>
+
+<!-- sHOW Details -->
+<div>
+    <img style= "width: 300px;" src="<%= rideShare.image%> " alt="">
+</div>
+
+    <div>
+        <h1><%= rideShare.companyName %></h1>
+        <p>SubmittedBy: <%= rideShare.submittedBy.username  %> </p>
+       
+         <h2><%=rideShare.description %></h2>
+        
+         <h3><%= rideShare.accessibility %></h3> 
+         <h4><%=rideShare.price %></h4>
+
+            <% if(user && rideShare.submittedBy.equals(user) ) { %>
+             
+             <a href="/rideShares/<%=rideShare.id%>/edit">Edit <%= rideShare.companyName %> </a>
+                </div>
+        </div>
+            <form action="/rideShares/<%=rideShare.id%>/delete?_method=DELETE" method="POST">
+                <button> Delete Rideshare </button>
+                </form>
+                    <% } %>
+                <% if (!user) { %>  
+                        <%}%>
+
+
+        <!-- REVIEW FORM -->
+        <h2>Leave a Review</h2>
+ 
+<form class="needs-validation" action="/rideShares/<%= rideShare.id %>/reviews" method="POST" novalidate>
+    <div>
+        <label class="form-label" for="rating">Rating</label>
+        <input class="form-range" name="review[rating]" type="range" min="0" max="5" step="1" required>
+    </div>
+    <div>
+        <label class="form-label" for="body">Review</label>
+        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5" required></textarea>
+    </div>
+    <button>Submit</button>
+</form>
+
+<div>
+     <!-- leaving a review  -->
+    <h3>Reviews</h3>
+    <% for (let reviews of rideShare.reviews) {%>
+    <div>
+        <p>Rating: <%=reviews.rating%></p>
+        <p>Reviews: <%=reviews.body%></p>
+        <p>Author: <%= reviews.author.username %></p>
+        <% if(user && reviews.author.equals(user) ) { %>
+
+        <form action="/rideShares/<%=rideShare.id%>/reviews/<%=reviews.id%>?_method=delete" method="POST">
+            <button>Delete</button>
+        </form>
+       <%}%>
+
+
+    </div>
+    <%}%>
+</div>
