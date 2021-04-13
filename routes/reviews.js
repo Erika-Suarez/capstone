@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const { reviewSchema } = require('../joiSchema');
-const AppError = require('../utilities/AppError');
+
 const asyncCatcher = require('../utilities/asyncCatcher');
 const {validateReview, isAuthenticated, isReviewCreator} = require('../middleware/middleware');
 const RideShare = require('../models/rideShare');
