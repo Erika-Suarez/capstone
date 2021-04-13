@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {rideShareSchema} = require("../joiSchema");
-const AppError = require("../utilities/AppError");
+const AppError = require("../utilities/appError");
 const asyncCatcher = require("../utilities/asyncCatcher");
 const RideShare = require("../models/rideShare");
 const { isAuthenticated,isCreator,validateRideShare } = require("../middleware/middleware");

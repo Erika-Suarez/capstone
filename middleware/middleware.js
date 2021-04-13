@@ -1,4 +1,4 @@
-const AppError  = require('../utilities/AppError');
+const AppError  = require('../utilities/appError');
 const RideShare = require('../models/rideShare');
 const {rideShareSchema, reviewSchema} = require('../joiSchema')
 
