@@ -112,7 +112,7 @@ app.use((req, res, next) => {
 
 // setting up server
 app.get('/', (req, res) => {
-    res.render('Home');
+    res.render('home');
 });
 
 // RIDESHARE CARD ROUTES ----------------------------
