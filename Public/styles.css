@@ -9,7 +9,7 @@ body {
 .container {
     width: 80%;
     margin: auto;
-    overflow: hidden;
+ 
 }
 .mainHeader {
     background: #333;
@@ -19,3 +19,26 @@ form {
 border: 3px solid rgb(122, 216, 114);
 padding: 20px
 }
+
+.hero-image {
+    width: 100%;
+   height: 550pc;
+   object-fit: cover;
+   object-position: middle;
+   border-radius: 15px;
+}
+.rideshare-index {
+    display: flex;
+    flex-wrap: wrap;
+}
+.rideshare-index li {
+    width: 33%;
+}
+.rideshare-index li img {
+    height: 400px;
+}
+
+
+
+
+

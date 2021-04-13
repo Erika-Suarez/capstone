@@ -4,8 +4,14 @@
 <div>
     <a href="/rideShares/new">Create a new Rideshare</a>
 </div>
-<ul>
+<ul class="rideshare-index">
     <% for (let rideShare of rideShares) {%>
-        <li><a href="rideShares/<%= rideShare.id %>"><%= rideShare.companyName %></a></li>
-        <% } %>
+    <li>
+        <a href="rideShares/<%= rideShare.id %>">
+            <img src="<%= rideShare.image %>" alt="">
+            <p><%= rideShare.companyName %></p>
+        </a>
+
+    </li>
+    <% } %>
 </ul>

@@ -25,17 +25,18 @@ const passport = require('passport');
 const PassportLocal = require('passport-local');
 const User = require('./models/user');
 
-// const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo");
 
 //process.env.DB_STRING
-
-//mongodb+srv://Erika_20:<Losangeles2020>@capstonedev.ofcmi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-
 //'mongodb://localhost:27017/rideShareCapstone'
+//DB_STRING=mongodb+srv://Erika_20:Losangeles2020@capstonedev.ofcmi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+const url = process.env.DB_STRING || 'mongodb://localhost:27017/rideShareCapstone'
 
 //Mongoose connecting to Mongo
 mongoose
-.connect('mongodb://localhost:27017/rideShareCapstone', {
+.connect(url, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useUnifiedTopology: true,
@@ -60,23 +61,25 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/public')));
 
-// const store = MongoStore.create({
-// 	mongoUrl: process.env.DB_STRING,
-// 	touchAfter: 24 * 60 * 60,
-// 	crypto: {
-// 		secret: 'drake',
-// 	},
-// });
+const secret = process.env.SECRET || "drake";
 
-// // This checks for any errors that may occur.
+const store = MongoStore.create({
+	mongoUrl: url,
+	touchAfter: 24 * 60 * 60,
+	crypto: {
+		secret,
+	},
+});
 
-// store.on('error', (e) => {
-// 	console.log('Store Error', e);
-// });
+// This checks for any errors that may occur.
+
+store.on('error', (e) => {
+	console.log('Store Error', e);
+});
 
 const sessionConfig = {
-	// store,
-	secret: 'drake',
+	store,
+	secret,
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
