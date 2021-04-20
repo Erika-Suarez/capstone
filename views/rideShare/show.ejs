@@ -32,14 +32,12 @@
 
         <% if(user) { %>
             <h2>Leave a Review</h2>
-            <link rel="stylesheet" href="/stars.css">
+           
 
            
             <form class="needs-validation" action="/rideShares/<%=rideShare.id%>/reviews" method="POST" novalidate>
 
-                <p class="starability-result" data-rating="3">
-                    Rated: 5 stars
-                  </p>
+            
     
                 <fieldset class="starability-coinFlip">
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
@@ -68,7 +66,9 @@
     <h3>Reviews</h3>
     <% for (let reviews of rideShare.reviews) {%>
     <div>
-        <p>Rating: <%=reviews.rating%></p>
+        <p class="starability-result" data-rating="<%= reviews.rating %>">
+            Rated: <%= reviews.rating %> 
+          </p>
         <p>Reviews: <%=reviews.body%></p>
         <p>Author: <%= reviews.author.username %></p>
         <% if(user && reviews.author.equals(user) ) { %>
