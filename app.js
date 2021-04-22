@@ -58,8 +58,8 @@ app.engine('ejs',ejsMate);
 app.use(express.urlencoded({extended: true}));
 
 // Making public folder available
-app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static('Public'));
+app.use(express.static(path.join(__dirname, '/Public')));
 
 const secret = process.env.SECRET || "drake";
 
