@@ -12,7 +12,6 @@ const rideShare = require("../models/rideShare");
 
 router.get("/", asyncCatcher(async (req, res) => {
     const rideShares = await RideShare.find({});
-    console.log(rideShares)
     res.render('rideShare/index', {rideShares});
     })
     ); 
@@ -23,8 +22,9 @@ router.get("/", asyncCatcher(async (req, res) => {
 // CREATE A NEW RideShare FROM THE SHOW ROUTE---------------
     router.post('/',
     isAuthenticated,
-    validateRideShare, asyncCatcher(async (req, res) => {
-        const rideShare = new rideShare(req.body.rideShare);
+    validateRideShare, 
+     asyncCatcher(async (req, res) => {
+        const rideShare = new RideShare(req.body.rideShare);
         rideShare.submittedBy = req.user._id;
         await rideShare.save();
         req.flash("success", "New Rideshare was sucessfully added");
@@ -44,7 +44,6 @@ router.get("/", asyncCatcher(async (req, res) => {
             }
         })
         .populate('submittedBy');
-        console.log(rideShare);
             if(!rideShare) {
                 req.flash('error', 'RideShare does not exist!');
                 res.redirect("/rideShares")
