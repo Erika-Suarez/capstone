@@ -2,12 +2,16 @@
     display: flex;
     height: 80vh;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    
 }
 .landing-left{
     width: 50%;
 }
 .landing-left h1{
     font-size: 64px;
+    
 }
 .landing-left a{
     background-color: black;
@@ -15,11 +19,18 @@
     padding: 16px 90px;
     display: inline-block;
     margin-top: 25px;
+   
     
 }
 .landing-right{
     width: 50%;
     object-fit: cover;
+    height: 100vh;
+    align-items: stretch;
+    
+  
+    
+   
 }
 .rideshare-index{
     display: flex;
