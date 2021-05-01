@@ -3,42 +3,69 @@
 <h1>Edit <%=rideShare.companyName%></h1>
 <div class="col-6 offset-3">
         
-    <form class="needs-validation" action="/rideShares" method="POST" novalidate>
-        <div class="nb-3">
-            <label class="form-label" for="name">Rideshare Company Name</label>
-            <input class="form-control"type="text" id="name" name="rideShare[name]" value="<%= rideShare.companyName %>" required>
-        </div>
-    
-       
-        <div class="nb-3">
+    <form class="needs-validation" action="/rideShares/<%= rideShare.id %>/?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
+        
+         <div class="mb-3">
+        <label class="form-label" for="companyName">Company Name</label>
+        <input class="form-control" type="text" id="companyName" name="rideShare[companyName]" value="<%= rideShare.companyName %> " required/>
+      </div>   
+        <div class="mb-3">
             <label class="form-label" for="description">Description</label>
             <input class="form-control" type="description" id="description" name="rideShare[description]" value="<%= rideShare.description %>" required>
         </div>
-                <div class="nb-3">
+                <div class="mb-3">
                     <label class="form-label" for="price">Price Range</label>
-                    <select name= "rideshare[price]" id="price">
+                    <select name= "rideShare[price]" id="price" value="<%= rideShare.price %>">
                         <option value="low">$</option>
                         <option value="medium">$$</option>
                         <option value="high">$$$</option>
                         </select>
                     </div>
-                        <div class="nb-3">
-                            <label class="form-label" for="accessibility">Accessibility</label>
-                            <select name= "rideshare[accessibility]" id="accessibility"></select>    
+                          <div class="mb-3">
+                            <label class="form-label" for="accessibility">accessibility</label>
+                            <select name= "rideShare[accessibility]" id="accessibility" value= "<%= rideShare.accessibility %>" >
                                 <option value="ramp">Ramp</option>
-                                <option value="wheeChair">Wheel Chair</option>
+                                <option value="wheelChair">Wheel Chair</option>
                                 <option value="hearingImpaired">Driver Speaks (ASL)</option>
+                                <option value="none">None of the above</option>
                             </select>
-                            </div>
-            </section>
-       
-    
-        <div class="nb-3">
-            <label class="form-label" for="image">RideShare Image</label>
-            <input class="form-control" type="text" id="image" name="rideShare[image]"" value=" <%= rideShare.image %>" required>
-        </div>
-    
-        <button> Submit </button>
+                        </div>
+                
+            
+             <div class=" mb-3">
+	            <label for="formFile" class="form-label" for="image">Add RideShare Image</label>
+	            <input class="form-control" type="file" name="image" id="formFile" multiple >
+            </div>
+
+              <div class="mb-3">
+        <h2>Delete Images</h2>
+          <% rideShare.image.forEach(function(img, i) { %>
+        <p>
+          <label class="fancy-checkbox-label" for="image<%=i%>">
+            <input
+              type="checkbox"
+              name="selectedImages[]"
+              id="image<%=i%>"
+              value="<%=img.filename%>"
+            />
+            <span class="fancy-checkbox fancy-checkbox-img"></span>
+            <img
+              src="<%= img.url%>"
+              class="img-thumbnail"
+              alt=""
+              id="image<%=i%>"
+            />
+          </label>
+        </p>
+        <% }) %>
+      </div>
+
+           
+
+        <button class="btn btn-success"">Submit</button>
     
     </form>
-<a href="/rideShares/<%=rideShare.id%>">Go back to <%=rideShare.companyName%></a>
+    <div>
+        <a href="/rideShares/<%=rideShare.id%>">Go back to <%=rideShare.companyName%></a>
+    </div>
+

@@ -1,58 +1,26 @@
 const express = require('express');
-const { required } = require('joi');
-const router = express.Router()
+const router = express.Router();
 const User = require("../models/user");
 const asyncCatcher = require("../utilities/asyncCatcher");
 const passport = require('passport');
+const users = require('../controllers/users');
 
 
-router.get("/register", (req, res) => {
-    res.render('users/register');
-})
 
-router.post(
-	'/register',
-	asyncCatcher(async (req, res) => {
-		try {
-			const { email, username, password } = req.body;
-			const user = new User({ email, username });
-			const newUser = await User.register(user, password);
-            req.login(newUser, (err) => {
-                if(err) return next(e);
-			req.flash('success', 'Welcome to the Rideshare Hub!');
-			res.redirect('/rideShares');
-            });
-		} catch (e) {
-			req.flash('error', e.message);
-		} 	res.redirect('/register');
-	})
-);
-router.get('/login', (req, res) => {
-	res.render('users/login');
-});
-
-router.post(
-	'/login', 
+router.route("/register")
+.get(users.renderRegister)
+.post(asyncCatcher(users.postRegister));
+	
+router.route('/login')
+.get(users.renderLogin)
+.post( 
 	passport.authenticate('local', {
 		failureFlash: true,
 		failureRedirect: '/login',
 	}),
-	(req, res) => {
-		req.flash('success', 'Welcome back to Rideshare Hub');
-		res.redirect('/rideShares');
-	}
+	users.postLogin
 );
-router.get('/logout', (req, res) => {
-	req.logout();
-	req.flash('success', 'Come back soon!');
-	res.redirect('/login');
-});
 
-router.get("./logout", (req, res) => {
-req.logout();
-req.flash('success', 'come back soon!');
-res.redirect('/login')
-});
-
+router.get('/logout', users.logout);
 
 module.exports = router;

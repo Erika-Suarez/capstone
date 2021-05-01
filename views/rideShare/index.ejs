@@ -1,17 +1,27 @@
 <% layout("./layouts/boilerplate")%>
 
-<h1> All Rideshares</h1>
+<h1>All Rideshares</h1>
 <div>
-    <a href="/rideShares/new">Create a new Rideshare</a>
+  <a href="/rideShares/new">Create a new Rideshare</a>
 </div>
-<ul class="rideshare-index">
+<div class="container">
+  <div class="row row-cols-3">
     <% for (let rideShare of rideShares) {%>
-    <li>
-        <a href="rideShares/<%= rideShare.id %>">
-            <img src="<%= rideShare.image %>" alt="">
-            <p><%= rideShare.companyName %></p>
-        </a>
+    <div class="card col">
+      <img
+        src="<%= rideShare.image[0].url %>"
+        class="card-img-top index-image"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title"><%= rideShare.companyName %></h5>
+        <p class="card-text"><%= rideShare.price %></p>
+        <a href="rideShares/<%= rideShare.id %>" class="btn btn-primary"
+          >View <%= rideShare.companyName %></a
+        >
+      </div>
+    </div>
 
-    </li>
     <% } %>
-</ul>
+  </div>
+</div>

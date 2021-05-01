@@ -1,49 +1,81 @@
-.landing-page{
-    display: flex;
-    height: 80vh;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    
+.landing-page {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.landing-left{
-    width: 50%;
+.landing-left {
+  width: 50%;
 }
-.landing-left h1{
-    font-size: 64px;
-    
+.landing-left h1 {
+  font-size: 64px;
 }
-.landing-left a{
-    background-color: black;
-    color: white;
-    padding: 16px 90px;
-    display: inline-block;
-    margin-top: 25px;
-   
-    
+.landing-left a {
+  background-color: black;
+  color: white;
+  padding: 16px 90px;
+  display: inline-block;
+  margin-top: 25px;
 }
-.landing-right{
-    width: 50%;
-    object-fit: cover;
-    height: 100vh;
-    align-items: stretch;
-    
-  
-    
-   
+.landing-right {
+  width: 50%;
+  object-fit: cover;
+  height: 100vh;
+  align-items: stretch;
 }
-.rideshare-index{
-    display: flex;
-    flex-wrap: wrap;
+.rideshare-index {
+  display: flex;
+  flex-wrap: wrap;
 }
-.rideshare-index li{
-width: 33%;
-padding: 0 10px;
-margin-top: 20px;
+.rideshare-index li {
+  width: 33%;
+  padding: 0 10px;
+  margin-top: 20px;
 }
-.rideshare-index li a img {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-  
+.index-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  flex-wrap: wrap;
+}
+.fancy-checkbox-label > input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: inherit;
+}
+.fancy-checkbox-label {
+  font-weight: normal;
+  cursor: pointer;
+}
+.fancy-checkbox:before {
+  font-family: FontAwesome;
+  content: "\f00c";
+  background: #fff;
+  color: transparent;
+  border: 3px solid #ddd;
+  border-radius: 3px;
+  z-index: 1;
+}
+.fancy-checkbox-label:hover > .fancy-checkbox:before,
+input:focus + .fancy-checkbox:before {
+  border-color: #bdbdff;
+}
+.fancy-checkbox-label:hover > input:not(:checked) + .fancy-checkbox:before {
+  color: #eee;
+}
+input:checked + .fancy-checkbox:before {
+  color: #c12727;
+  background: #ffffff;
+  border-color: #ffffff;
+}
+.fancy-checkbox-img:before {
+  position: absolute;
+  margin: 20px;
+  line-height: normal;
+}
+input:checked + .fancy-checkbox-img + img {
+  transform: scale(0.99);
+  box-shadow: 0 0 5px #bdbdff;
+  border: solid 4px #c52e2e;
 }

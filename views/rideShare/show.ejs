@@ -1,24 +1,39 @@
 <% layout("./layouts/boilerplate")%>
+<link rel="stylesheet" href="/stars.css">
+
+
 
 <a href="/rideShares">Go to all Rideshares</a>
 
-<!-- sHOW Details -->
-<div>
-    <img style= "width: 300px;" src="<%= rideShare.image%> " alt="">
-</div>
+<!-- Creating a BootStrap Carousel -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
 
+        <%  for(let [index, image] of rideShare.image.entries()) { %>
+            <div class="carousel-item <%= index === 0 && "active"   %> ">
+                <img src="<%= image.url %> " class="d-block w-100 active" alt="...">
+            </div>
+            <% } %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+<!-- sHOW Details -->
     <div>
         <h1><%= rideShare.companyName %></h1>
         <p>SubmittedBy: <%= rideShare.submittedBy.username  %> </p>
-       
-         <h2><%=rideShare.description %></h2>
-        
+        <p2><%=rideShare.description %></p2>
          <h3><%= rideShare.accessibility %></h3> 
          <h4><%=rideShare.price %></h4>
 
-            <% if(user && rideShare.submittedBy.equals(user) ) { %>
-             
-             <a href="/rideShares/<%=rideShare.id%>/edit">Edit <%= rideShare.companyName %> </a>
+         <% if(user && rideShare.submittedBy.equals(user) ) { %>
+              <a href="/rideShares/<%=rideShare.id%>/edit">Edit <%= rideShare.companyName %> </a>
                 </div>
         </div>
             <form action="/rideShares/<%=rideShare.id%>/delete?_method=DELETE" method="POST">
@@ -36,9 +51,6 @@
 
            
             <form class="needs-validation" action="/rideShares/<%=rideShare.id%>/reviews" method="POST" novalidate>
-
-            
-    
                 <fieldset class="starability-coinFlip">
                     <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
                         aria-label="No rating." />
@@ -77,8 +89,7 @@
             <button>Delete</button>
         </form>
        <%}%>
-
-
     </div>
     <%}%>
+    <a href="/rideShares">Go back to all the rideShares</a>
 </div>

@@ -1,53 +1,68 @@
 <% layout("./layouts/boilerplate")%>
 <div>
-    <a href="/rideShares"> Go back to all Rideshares</a>
+  <a href="/rideShares"> Go back to all Rideshares</a>
 
-    <h1 class="text-center">Create a New Rideshare</h1>
-    <div class="col-6 offset-3">
+  <h1 class="text-center">Create a New Rideshare</h1>
+  <div class="col-6 offset-3">
+    <form
+      class="needs-validation"
+      action="/rideShares"
+      method="POST"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="companyName">Company Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="companyName"
+          name="rideShare[companyName]"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <input
+          class="form-control"
+          type="description"
+          id="description"
+          name="rideShare[description]"
+          required
+        />
+      </div>
 
-        <form class= "needs-validation" action="/rideShares" method="POST" novalidate>
-            <div class="nb-3">
-                <label class="form-label" for="companyName">Company Name</label>
-                <input class="form-control" type="text" id="companyName" name="rideShare[companyName]" required>
-            </div>
-            <div class="nb-3">
-                <label class="form-label" for="description">Description</label>
-                <input class="form-control" type="description" id="description" name="rideShare[description]" required>
-            </div>
-        
-            <div class="nb-3">
-                <label class="form-label" for="price">Price Range </label>
-                <select name= "rideShare[price]" id="price">
-                    <option  value="low">$</option>
-                    <option value="medium">$$</option>
-                    <option value="high">$$</option>
-                </select>
-            </div>
+      <div class="mb-3">
+        <label class="form-label" for="price">Price Range </label>
+        <select name="rideShare[price]" id="price">
+          <option value="low">$</option>
+          <option value="medium">$$</option>
+          <option value="high">$$</option>
+        </select>
+      </div>
 
-                        <div class="nb-3">
-                            <label class="form-label" for="accessibility">accessibility</label>
-                            <select name= "rideShare[accessibility]" id="accessibility">
-                                <option value="ramp">Ramp</option>
-                                <option value="wheeChair">Wheel Chair</option>
-                                <option value="hearingImpaired">Driver Speaks (ASL)</option>
-                                <option value="none">None of the above</option>
-                            </select>
-                        </div>
-                
-                
-           
-            
-          
-            <div class="nb-3">
-                <label class="form-label" for="image">RideShare Image</label>
-                <input class="form-control" type="text" id="image" name="rideShare[image]" required>
-            </div>
-            
-        
-            <button> Submit </button>
-        
-        </form>
-    </div>
-       
+      <div class="mb-3">
+        <label class="form-label" for="accessibility">accessibility</label>
+        <select name="rideShare[accessibility]" id="accessibility">
+          <option value="ramp">Ramp</option>
+          <option value="wheeChair">Wheel Chair</option>
+          <option value="hearingImpaired">Driver Speaks (ASL)</option>
+          <option value="none">None of the above</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">RideShare Image</label>
+        <input
+          class="form-control"
+          name="image"
+          type="file"
+          id="formFile"
+          multiple
+        />
+      </div>
+
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
-   
